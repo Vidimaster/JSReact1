@@ -1,3 +1,25 @@
+a {
+  text-decoration: none;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border: 1px solid;
+  color: #63adf2;
+  font-size: 16px;
+
+  margin-bottom: 60px;
+  transition: all 0.3s;
+
+}
+
+.btn:hover {
+  color: white;
+  background-color: #5f4dfd;
+  border: 1px solid #15064d;
+}
+
 .App {
   text-align: center;
   display: flex;
