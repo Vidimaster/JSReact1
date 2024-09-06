@@ -7,7 +7,7 @@ export function List() {
         { id: 3, text: "Это третий комментарий" }
     ]);
 
-    let newDataList = [...comments].map(elem => ({
+    const newDataList = [...comments].map(elem => ({
         text: elem.text,
         id_unique: crypto.randomUUID(),
     }));
