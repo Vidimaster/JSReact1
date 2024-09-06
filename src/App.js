@@ -1,5 +1,5 @@
 import './styles/App.scss';
-import {List} from './components/CommentsList/CommentsList';
+import { List } from './components/CommentsList/CommentsList';
 
 function App() {
   return (

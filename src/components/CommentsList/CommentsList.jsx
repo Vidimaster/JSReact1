@@ -7,19 +7,24 @@ export function List() {
         { id: 3, text: "Это третий комментарий" }
     ]);
 
-    function del(id) {
-        const newList = comments.filter((item) => item.id !== id);
+    let newDataList = [...comments].map(elem => ({
+        text: elem.text,
+        id_unique: crypto.randomUUID(),
+    }));
+
+    function del(id_unique) {
+        const newList = newDataList.filter((item) => item.id_unique !== id_unique);
         setComments(newList);
     }
-    const listItems = comments.map((element, index) => {
+    const listItems = newDataList.map((element) => {
         return (
             <div>
-                <ul id={element.id} type="disc" className="item">
-                    <li key={index}>
+                <ul type="disc" className="item">
+                    <li key={element.id_unique}>
                         {element.text}
                     </li>
                 </ul>
-                <div><a href="#" className="btn" onClick={() => del(element.id)}>Удалить комментарий</a></div>
+                <div><a href="#" className="btn" onClick={() => del(element.id_unique)}>Удалить комментарий</a></div>
             </div>
         );
     });
