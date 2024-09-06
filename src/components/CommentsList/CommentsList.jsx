@@ -7,23 +7,20 @@ export function List() {
         { id: 3, text: "Это третий комментарий" }
     ]);
 
-    function del(id){
+    function del(id) {
         const newList = comments.filter((item) => item.id !== id);
-    
         setComments(newList);
     }
-    const listItems = comments.map((element) => {
+    const listItems = comments.map((element, index) => {
         return (
-            <ul id={element.id} type="disc" className="item">
-
-                <li>
-
-                    {element.text}
-                    
-                </li>
+            <div>
+                <ul id={element.id} type="disc" className="item">
+                    <li key={index}>
+                        {element.text}
+                    </li>
+                </ul>
                 <div><a href="#" className="btn" onClick={() => del(element.id)}>Удалить комментарий</a></div>
-            </ul>
-            
+            </div>
         );
     });
 
