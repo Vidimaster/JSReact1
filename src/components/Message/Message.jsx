@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
 const Message = (props) => {
     return (
@@ -7,6 +8,10 @@ const Message = (props) => {
             <p className="msg_par">{props.txt}</p>
         </div>
     );
+}
+
+Message.propTypes = {
+    name: PropTypes.string.isRequired,
 }
 
 export default Message;
