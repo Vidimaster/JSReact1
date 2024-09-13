@@ -9,12 +9,12 @@ function TextInput() {
     const updateC = e => setValue({
         val2: e.target.value,
         val1: (+e.target.value * 9 / 5 + 32)
-      })
-      
-      const updateF = e => setValue({
+    })
+
+    const updateF = e => setValue({
         val2: ((+e.target.value - 32) * 5 / 9),
         val1: e.target.value
-      })
+    })
 
     return (
         <div>
