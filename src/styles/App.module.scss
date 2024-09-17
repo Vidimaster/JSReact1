@@ -96,7 +96,7 @@ a {
 }
 
 .active {
-  background-color: #11092F;
+  background-color: #000000;
   color: white;
 }
 
@@ -110,6 +110,17 @@ a {
   text-align: center;
   cursor: pointer;
   font-weight: bold;
-  background-color: #111324;
+  background-color: #ffffff;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.4), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.light {
+  color: tomato;
+  background-color: #ffffff;
+}
+
+
+.dark {
+  color: white;
+  background-color: #070233;
 }
