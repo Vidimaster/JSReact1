@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Button } from "@mui/material";
 import { addItem } from "../../redux/slices/EditSlice"
+import { editItem } from "../../redux/slices/EditSlice"
 import * as React from 'react';
 import { useState } from "react";
 
@@ -38,8 +39,16 @@ function InpForm ({ product })  {
                 <input type="checkbox" id="avai" name="available" checked={isChecked} onChange={handleIsChecked} />
             </div>
             <Button onClick={() => {
-                const inputs = { id: crypto.randomUUID(), ...data }
-                dispatch(addItem(inputs))
+                if (product === undefined){
+                    const inputs = {id: crypto.randomUUID(), ...data }
+                    dispatch(addItem(inputs))
+                }
+                else{
+                    const inputs = {id: product, ...data }
+                    dispatch(editItem(inputs))
+                }
+                
+                
             }}>Добавить</Button>
         </form>
     )

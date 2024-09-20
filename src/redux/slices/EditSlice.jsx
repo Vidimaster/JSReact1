@@ -14,14 +14,22 @@ const changeSlice = createSlice({
     initialState,
     reducers: {
         addItem: (state, action) => {
-            state.items = [...new Set([...state.items, action.payload])]  
+            state.items = [...new Set([...state.items, action.payload])]
         },
         deleteItem: (state, action) => {
             state.items = state.items.filter(item => item.id !== action.payload)
+        },
+        editItem: (state, action) => {
+            const ind = state.items.findIndex(
+                (item) => item.id === action.payload.id,
+            );
+            if (ind !== -1) {
+                state.items[ind] = action.payload;
+            }
         },
     }
 });
 
 export const selectItems = state => state.delete.items;
-export const { addItem, deleteItem} = changeSlice.actions;
+export const { addItem, deleteItem, editItem } = changeSlice.actions;
 export default changeSlice.reducer; 

@@ -2,8 +2,18 @@ import { useDispatch } from "react-redux";
 import { Button } from "@mui/material";
 import { deleteItem } from "../../redux/slices/EditSlice"
 import Forms from "../InputForm/InputForm";
+import { useState } from 'react';
+
 
 function Goods({ products }) {
+    const [mounted, setMounted] = useState(0);
+
+    function InputEdit({ id }) {
+        if (id === mounted) {
+            return <Forms product={id} />
+        }
+    }
+
     const dispatch = useDispatch();
     return (
         <div>
@@ -18,6 +28,8 @@ function Goods({ products }) {
                         <Button onClick={() => {
                             dispatch(deleteItem(id))
                         }}>Удалить</Button>
+                        <Button onClick={e => setMounted(id)}>Редактировать</Button>
+                        <InputEdit id={id} />
                     </li>
                 )}
             </ul>
