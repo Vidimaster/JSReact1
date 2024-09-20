@@ -8,8 +8,14 @@ import { AboutPage } from "./components/AboutPage/AboutPage";
 import { Box } from "./components/Box/Box";
 import { useSelector } from 'react-redux';
 import { Provider, useDispatch } from 'react-redux';
-import { useCallback } from "react";
-import store from "./redux/themeSwitch";
+// import { useCallback } from "react";
+import { changeTheme } from "./redux/slices/ThemeSwitch"
+import store from './redux/store';
+import Goods from "./components/Goods/Goods";
+
+import { selectItems } from './redux/slices/EditSlice';
+import { selectTheme } from './redux/slices/ThemeSwitch.jsx';
+
 
 import {
   BrowserRouter,
@@ -29,14 +35,8 @@ const AppWrapper = () => {
 function App() {
   const dispatch = useDispatch();
 
-  const setTheme = useCallback((theme) => {
-    dispatch({
-      type: 'TOGGLE_THEME',
-      current_theme: theme === 'light' ? "dark" : "light",
-    });
-  }, [dispatch]);
-
-  const currentTheme = useSelector(state => state.current_theme);
+  const currentTheme = useSelector(selectTheme);
+  const itms = useSelector(selectItems);
 
   const routes = [
     {
@@ -51,7 +51,7 @@ function App() {
     },
     {
       path: "/arr",
-      element: <Box />,
+      element: <Goods products={itms} />,
       text: "Товары",
     },
     {
@@ -74,7 +74,7 @@ function App() {
 
           {routes.map(item => <NavLink className={styleActiveLink} to={item.path}>{item.text}</NavLink>)}
         </nav>
-        <Button variant="contained" size="small" color="primary" onClick={() => { setTheme(currentTheme) }}>{currentTheme}</Button>
+        <Button variant="contained" size="small" color="primary" onClick={() => { dispatch(changeTheme(currentTheme)) }}>{currentTheme}</Button>
         <div className={s[currentTheme]}>
 
           <Routes>
@@ -82,6 +82,8 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+
+      
     </div>
 
   );
